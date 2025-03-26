@@ -1,0 +1,65 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Todo API
+
+Globals:
+  Function:
+    Timeout: 10
+    Environment:
+      Variables:
+        TABLE_NAME: !Ref TodosTable
+
+Resources:
+  TodosTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: Todos
+      AttributeDefinitions:
+        - AttributeName: userId
+          AttributeType: S
+        - AttributeName: todoId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: userId
+          KeyType: HASH
+        - AttributeName: todoId
+          KeyType: RANGE
+      BillingMode: PAY_PER_REQUEST
+
+  CreateTodoFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/createTodo/
+      Handler: app.handler
+      Runtime: nodejs20.x
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref TodosTable
+      Events:
+        CreateTodo:
+          Type: Api
+          Properties:
+            Path: /todos
+            Method: POST
+            RestApiId: !Ref TodoApi
+
+  TodoApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+  GetTodoFunction:
+  Type: AWS::Serverless::Function
+  Properties:
+    CodeUri: functions/getTodo/
+    Handler: app.handler
+    Runtime: nodejs20.x
+    Policies:
+      - DynamoDBReadPolicy:
+          TableName: !Ref TodosTable
+    Events:
+      GetTodo:
+        Type: Api
+        Properties:
+          Path: /todos/{userId}/{todoId}
+          Method: GET
+          RestApiId: !Ref TodoApi
