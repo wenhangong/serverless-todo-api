@@ -2,7 +2,8 @@
   "name": "createtodo",
   "version": "1.0.0",
   "dependencies": {
-    "aws-sdk": "^2.1692.0"
+    "aws-sdk": "^2.1692.0",
+    "joi": "^17.13.3"
   },
   "main": "app.js",
   "scripts": {

@@ -47,19 +47,20 @@ Resources:
     Type: AWS::Serverless::Api
     Properties:
       StageName: Prod
+
   GetTodoFunction:
-  Type: AWS::Serverless::Function
-  Properties:
-    CodeUri: functions/getTodo/
-    Handler: app.handler
-    Runtime: nodejs20.x
-    Policies:
-      - DynamoDBReadPolicy:
-          TableName: !Ref TodosTable
-    Events:
-      GetTodo:
-        Type: Api
-        Properties:
-          Path: /todos/{userId}/{todoId}
-          Method: GET
-          RestApiId: !Ref TodoApi
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/getTodo/
+      Handler: app.handler
+      Runtime: nodejs20.x
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref TodosTable
+      Events:
+        GetTodo:
+          Type: Api
+          Properties:
+            Path: /todos/{userId}/{todoId}
+            Method: GET
+            RestApiId: !Ref TodoApi
