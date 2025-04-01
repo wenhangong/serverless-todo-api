@@ -1,0 +1,46 @@
+{
+    "EvaluationResults": [
+        {
+            "EvalActionName": "dynamodb:PutItem",
+            "EvalResourceName": "arn:aws:dynamodb:us-east-1:168155204372:table/Todos",
+            "EvalDecision": "allowed",
+            "MatchedStatements": [
+                {
+                    "SourcePolicyId": "role_sam-app-CreateTodoFunctionRole-geomhHT2prpK_CreateTodoFunctionRolePolicy0",
+                    "SourcePolicyType": "IAM Policy",
+                    "StartPosition": {
+                        "Line": 1,
+                        "Column": 38
+                    },
+                    "EndPosition": {
+                        "Line": 1,
+                        "Column": 214
+                    }
+                }
+            ],
+            "MissingContextValues": [],
+            "EvalDecisionDetails": {},
+            "ResourceSpecificResults": [
+                {
+                    "EvalResourceName": "arn:aws:dynamodb:us-east-1:168155204372:table/Todos",
+                    "EvalResourceDecision": "allowed",
+                    "MatchedStatements": [
+                        {
+                            "SourcePolicyId": "role_sam-app-CreateTodoFunctionRole-geomhHT2prpK_CreateTodoFunctionRolePolicy0",
+                            "SourcePolicyType": "IAM Policy",
+                            "StartPosition": {
+                                "Line": 1,
+                                "Column": 38
+                            },
+                            "EndPosition": {
+                                "Line": 1,
+                                "Column": 214
+                            }
+                        }
+                    ],
+                    "MissingContextValues": []
+                }
+            ]
+        }
+    ]
+}

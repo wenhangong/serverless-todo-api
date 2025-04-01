@@ -1,3 +1,5 @@
+const { success, error } = require('../shared/response');
+
 module.exports = {
     success: (data, statusCode = 200) => ({
         statusCode,

@@ -1,0 +1,34 @@
+name: Deploy Todo API
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - run: npm install -g aws-sam-cli
+      - run: cd functions/createTodo && npm install && npm test
+      
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - run: npm install -g aws-sam-cli
+      - run: sam build
+      - run: sam deploy --no-confirm-changeset
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AKIASOJWUZMKJPIUDENH }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.r4kVz2GV6x16pomvRXEs3GnxdZJaFRph4qVi/All }}
+          AWS_REGION: us-east-1

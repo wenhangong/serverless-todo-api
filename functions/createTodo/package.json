@@ -1,0 +1,16 @@
+{
+  "name": "todo-function",
+  "version": "1.0.0",
+  "description": "Lambda function for Todo API",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1185.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "jest": "^28.1.3"
+  }
+}
